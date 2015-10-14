@@ -36,6 +36,71 @@
 
 
 		</div>
+<div id='dv1' align="center">
+            <form ng-controller="FrmController">
+                <ul>
+                    <li class="err" ng-repeat="error in errors"> {{ error}} </li>
+                </ul>
+                <ul>
+                    <li class="info" ng-repeat="msg in msgs"> {{ msg}} </li>
+                </ul>
+                <h2>Sigup Form</h2>
+                <div>
+                    <label>matricula</label> 
+                    <input type="text" ng-model="matricula" placeholder="matricula" style='margin-left: 22px;'> 
+                </div>
+                <div>
+                    <label>nombre</label>
+                    <input type="text" ng-model="nombre" placeholder="nombre" style='margin-left: 22px;'> 
+                </div>
+                <div>
+                    <label>apellidos</label>
+                    <input type="text" ng-model="apellidos" placeholder="apellidos">
+                </div>
+                <div>
+                    <label>email</label>
+                    <input type="text" ng-model="email" placeholder="email">
+                </div>
+                <div>
+                    <label>password</label>
+                    <input type="password" ng-model="password" placeholder="password">
+                </div>
+                <div>
+                    <label>imagen</label>
+                    <input type="text" ng-model="imagen" placeholder="imagen">
+                </div>
+                <button ng-click='SignUp();' style='margin-left: 63px;margin-top:10px'>SignUp</button>
+            </form>
+        </div>
+        <script type="text/javascript">
+            
+myApp.controller('FrmController', function($scope, $http){
+                $scope.errors = [];
+                $scope.msgs = [];
 
+                $scope.SignUp = function() {
+
+                    $scope.errors.splice(0, $scope.errors.length); // remove all error messages
+                    $scope.msgs.splice(0, $scope.msgs.length);
+
+                    $http.post('post.php', {'matricula': $scope.matricula, 'nombre': $scope.nombre, 'apellidos': $scope.apellidos, 'email': $scope.email, 'password': $scope.password, 'imagen': $scope.imagen}
+                    ).success(function(data, status, headers, config) {
+                        if (data.msg != '')
+                        {
+                            $scope.msgs.push(data.msg);
+                        }
+                        else
+                        {
+                            $scope.errors.push(data.error);
+                        }
+                    }).error(function(data, status) { // called asynchronously if an error occurs
+// or server returns response with an error status.
+                        $scope.errors.push(status);
+                    });
+                }
+            
+
+});
+        </script>
     </body>
 </html>

@@ -6,8 +6,12 @@ $http.get("alumnos.php")
    .success(function (response) {
       $scope.alumnos = response.records;
       console.log($scope.alumnos);
-   });
+
 });
+
+   });
+
+ 
 
 
 
