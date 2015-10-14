@@ -25,7 +25,7 @@ if($row_cnt>0){
 	
 while($row=$result->fetch_assoc()){
 //    printf("<input type='text' size='25' id='input_cliente' value='".$row['nombre']."'>");
-	$arr[]= $row;
+	$arr['records']= $row;
 
 }
 
