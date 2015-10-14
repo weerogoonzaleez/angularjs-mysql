@@ -22,14 +22,14 @@
 
         <div class="container" ng-controller="mainController">
 			
-            <table>
+            <table class="table table-striped">
+            <tr><td>matricula</td><td>nombre</td><td>apellidos</td><td>email</td></tr>
   <tr ng-repeat="x in alumnos">
-    <td>{{ x.apellidos }}</td>
-    <td>{{ x.email }}</td>
-    <td>{{ x.imagen }}</td>
     <td>{{ x.matricula }}</td>
     <td>{{ x.nombre }}</td>
-    <td>{{ x.password }}</td>
+    <td>{{ x.apellidos }}</td>
+    <td>{{ x.email }}</td>
+
   </tr>
 </table>
 
